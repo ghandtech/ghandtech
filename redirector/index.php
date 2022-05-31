@@ -8,7 +8,7 @@
 
 
     <title>Cloud Application Platform | Heroku</title>
-    <meta property="og:title" content="Cloud Application Platform | Heroku">
+    <meta property="og:title" content="Cloud Application Platform | Heroku man">
 
       <meta name="description" content="Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.">
       <meta property="og:description" content="Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.">
